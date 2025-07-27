@@ -1,0 +1,40 @@
+{
+  "name": "image-clicker-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.839.0",
+    "@aws-sdk/s3-request-presigner": "^3.839.0",
+    "@types/js-cookie": "^3.0.6",
+    "@types/multer": "^1.4.13",
+    "agora-access-token": "^2.0.4",
+    "agora-rtc-sdk-ng": "^4.23.4",
+    "js-cookie": "^3.0.5",
+    "multer": "^2.0.1",
+    "mysql2": "^3.14.1",
+    "next": "^15.3.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.8",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
