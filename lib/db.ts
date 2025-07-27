@@ -59,7 +59,7 @@ export interface S3Media {
 }
 
 interface DatabaseResult {
-  lastInsertRowid: number;
+  lastInsertRowid: bigint;
   changes: number;
 }
 
@@ -91,7 +91,7 @@ export async function run(
   const client = await createConnection();
   const result = await client.execute(sql, params); // ✅ Pass params as second arg
   return {
-    lastInsertRowid: result.lastInsertRowid as any,
+    lastInsertRowid: result.lastInsertRowid as bigint,
     changes: result.rowsAffected
   };
 }
@@ -107,10 +107,10 @@ export async function getAllLoads(): Promise<Load[]> {
   return await query(sql) as Load[];
 }
 
-export async function createLoad(userId: number, loadNumber: string): Promise<number> {
+export async function createLoad(userId: number, loadNumber: string): Promise<bigint> {
   const sql = 'INSERT INTO loads (userId, loadNumber) VALUES (?, ?)';
   const result = await run(sql, [userId, loadNumber]);
-  return result.lastInsertRowid;
+  return result.lastInsertRowid as bigint;
 }
 
 export async function updateLoadStatus(loadId: number, status: boolean): Promise<boolean> {
@@ -153,7 +153,7 @@ export async function getUserByPhone(phoneNumber: string): Promise<User | null> 
   return results[0] || null;
 }
 
-export async function createUser(name: string, phoneNumber: string): Promise<number> {
+export async function createUser(name: string, phoneNumber: string): Promise<bigint> {
   const sql = 'INSERT INTO users (name, phoneNumber) VALUES (?, ?)';
   const result = await run(sql, [name, phoneNumber]);
   return result.lastInsertRowid;
@@ -169,7 +169,7 @@ export async function createMeetingRoom(
   roomId: string, 
   channelName: string, 
   meetingLink: string
-): Promise<number> {
+): Promise<bigint> {
   const sql = 'INSERT INTO meeting_rooms (loadId, roomId, channelName, meetingLink) VALUES (?, ?, ?, ?)';
   const result = await run(sql, [loadId, roomId, channelName, meetingLink]);
   return result.lastInsertRowid;
@@ -212,7 +212,7 @@ export async function createRecording(
   recordingId: string,
   uid: string,
   cname: string
-): Promise<number> {
+): Promise<bigint> {
   const sql = `
     INSERT INTO recordings (meetingRoomId, resourceId, sid, recordingId, status, startedAt, uid, cname) 
     VALUES (?, ?, ?, ?, 'recording', CURRENT_TIMESTAMP, ?, ?)
