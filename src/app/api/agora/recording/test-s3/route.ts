@@ -14,7 +14,7 @@ export async function POST() {
     };
     
     // AWS_REGION_ID is optional and defaults to 0 for US regions
-    const AWS_REGION_ID = process.env.AWS_REGION_ID || '0';
+    const AWS_REGION_ID = process.env.AWS_REGION_ID || '21';
     
     console.log('[S3 Test] Environment variables check:', {
       AWS_S3_BUCKET_NAME: requiredEnvVars.AWS_S3_BUCKET_NAME ? '✓ Set' : '✗ Missing',
