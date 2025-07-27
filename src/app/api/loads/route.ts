@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     const loadId = await createLoad(userId, loadNumber);
     return NextResponse.json({ 
       success: true, 
-      loadId,
+      loadId : typeof loadId === 'bigint' ? Number(loadId) : loadId,
       message: 'Load created successfully' 
     }, { status: 201 });
   } catch (error) {
